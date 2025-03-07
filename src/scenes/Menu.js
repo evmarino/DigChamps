@@ -4,16 +4,22 @@ class Menu extends Phaser.Scene {
     }
 
     preload() {
+       
         this.load.image('title', './Assets/DCtitle.png');
         this.load.image('lettertitle', './Assets/lettertitle.png');
         this.load.image('colortitle', './Assets/colorchamptitle.png');
-        this.load.image('maintitle', './Assets/DCtitle.png');
+        this.load.image('maintitle', './Assets/DCtitle.png')
+
+        this.load.image('pickPlayer', './Assets/digbro.png')
+        this.load.image('shovel', './Assets/shovellift.png');
+        this.load.image('axe', './Assets/pickaxelift.png');
+        this.load.spritesheet('shovelbro', './Assets/shovelbro.png', { frameWidth: 64, frameHeight: 64 });
+
         this.load.image('pink', './Assets/DCpink.png');
         this.load.image('cloud', './Assets/cloud.png');
         this.load.image('snail', './Assets/snail.png');
-        this.load.image('players', './Assets/digbro.png');
-        this.load.spritesheet('shovelbro', './Assets/shovelbro.png', { frameWidth: 64, frameHeight: 64 });
         this.load.image('endless', './Assets/endless.png');
+        
     }
 
     create() {
@@ -38,9 +44,9 @@ class Menu extends Phaser.Scene {
         this.tweens.add({
             targets: this.title,
             alpha: 0,        
-            duration: 500,   
+            duration: 300,   
             yoyo: true,      
-            repeat: 2,       
+            repeat: 3,       
             onComplete: () => {  
                 // fading out of letter & color title while main title fades in
                 this.tweens.add({
@@ -53,7 +59,7 @@ class Menu extends Phaser.Scene {
                 this.tweens.add({
                     targets: this.Mtitle,
                     alpha: 1,
-                    duration: 1000,  // 1 second fade in
+                    duration: 10,  // 1 second fade in
                     delay: 200, 
                     onComplete: () => {
 

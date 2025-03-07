@@ -1,6 +1,6 @@
 class PinkChamp extends Phaser.Scene {
     constructor() {
-        super("pinkChamp");
+    super("pinkChamp");
     }
 
     create() {
