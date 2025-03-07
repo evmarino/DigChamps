@@ -14,6 +14,7 @@ class Menu extends Phaser.Scene {
         this.load.image('shovel', './Assets/shovellift.png');
         this.load.image('axe', './Assets/pickaxelift.png');
         this.load.spritesheet('shovelbro', './Assets/shovelbro.png', { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet('axebro', './Assets/axebro.png', { frameWidth: 64, frameHeight: 64 });
 
         this.load.image('pink', './Assets/DCpink.png');
         this.load.image('cloud', './Assets/cloud.png');

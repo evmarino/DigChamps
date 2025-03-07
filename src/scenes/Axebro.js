@@ -1,33 +1,33 @@
-class ShovelBro extends Phaser.Physics.Arcade.Sprite {
+class AxeBro extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
-        super(scene, x, y, 'shovelbro', 0);
+        super(scene, x, y, 'axebro', 0);
 
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.setVelocityX(0);
         this.setCollideWorldBounds(true);
         this.jumpCount = 0;
-        
+
         this.scene = scene;
         this.createAnimations();
     }
 
     createAnimations() {
-        if (!this.scene.anims.exists('shovelbro_walk')) {
-            console.log("Creating shovelbro_walk animation...");
+        if (!this.scene.anims.exists('axebro_walk')) {
+            console.log("Creating axebro_walk animation...");
             this.scene.anims.create({
-                key: 'shovelbro_walk',
-                frames: this.scene.anims.generateFrameNumbers('shovelbro', { frames: [1, 2, 3, 1, 2, 3,] }),
+                key: 'axebro_walk',
+                frames: this.scene.anims.generateFrameNumbers('axebro', { frames: [0, 1, 2, 3, 0, 1, 2, 3] }),
                 frameRate: 24,
                 repeat: -1
             });
         }
 
-        if (!this.scene.anims.exists('shovelbro_jump')) {
-            console.log("Creating shovelbro_jump animation...");
+        if (!this.scene.anims.exists('axebro_jump')) {
+            console.log("Creating axebro_jump animation...");
             this.scene.anims.create({
-                key: 'shovelbro_jump',
-                frames: [{ key: 'shovelbro', frame: 0 }],
+                key: 'axebro_jump',
+                frames: [{ key: 'axebro', frame: 0 }],
                 frameRate: 1,
                 repeat: 0
             });
@@ -36,12 +36,12 @@ class ShovelBro extends Phaser.Physics.Arcade.Sprite {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(keyJUMP) && this.jumpCount < 10) {
-            this.play('shovelbro_jump', true);
+            this.play('axebro_jump', true);
             this.playerJumps();
             this.jumpCount++;
         } 
-        else if (this.body.touching.down && this.anims.currentAnim?.key !== 'shovelbro_walk') {
-            this.play('shovelbro_walk', true);
+        else if (this.body.touching.down && this.anims.currentAnim?.key !== 'axebro_walk') {
+            this.play('axebro_walk', true);
             this.jumpCount = 0;
         }
     }
