@@ -19,7 +19,6 @@ class Endless extends Phaser.Scene {
     }
 
     create() {
-        console.log(`Endless Runner starts with: ${this.selectedCharacter}`)
 
         //audio
         this.maintheme = this.sound.add('maintheme', { loop: true, volume: 0.5 })
@@ -80,17 +79,26 @@ class Endless extends Phaser.Scene {
     }
 
     startPlayer(character) {
-        console.log(`Starting Player as: ${character}`)
-        if (character === 'shovelbro') {
-            this.player = new ShovelBro(this, 200, 450)
-        } else {
-            this.player = new AxeBro(this, 200, 450)
+
+        if (this.player) {
+            this.player.destroy();  // previous player is removed
         }
 
-        this.player.setScale(2).setSize(40, 40)
-        this.player.body.setGravityY(600)
-        this.physics.add.collider(this.player, this.floor)
-        this.player.play(`${character}_walk`, true)
+        if (character === 'shovelbro') {
+            this.player = new ShovelBro(this, 200, 450);
+        } else {
+            this.player = new AxeBro(this, 200, 450);
+        }
+
+        this.player.setScale(2).setSize(40, 40);
+        this.player.body.setGravityY(600);
+        this.physics.add.collider(this.player, this.floor);
+        this.player.play(`${character}_walk`, true);
+
+        this.player.setAlpha(1);
+        this.player.setActive(true);
+        this.player.setVisible(true);
+
     }
 
     update() {
@@ -136,7 +144,6 @@ class Endless extends Phaser.Scene {
             if (obstacle.active) obstacle.body.setVelocityX(this.obstacleSpeed)
         });
 
-        console.log(`Difficulty Increased! Speed: ${this.obstacleSpeed}, Spawn Interval: ${this.spawnInterval}`)
     }
 
     obstacleCollision() {
@@ -189,11 +196,14 @@ class Endless extends Phaser.Scene {
     restartForPlayer2() {
         this.currentPlayer = 2;
         this.elapsedTime = 0;
-        this.obstacles.forEach(obstacle => obstacle.destroy())
-        this.obstacles = []
 
-        this.player.destroy()
+        this.obstacles.forEach(obstacle => obstacle.destroy());
+        this.obstacles = [];
 
+        if (this.player) {
+            this.player.destroy();
+            this.player = null;
+        }
         // Reset difficulty settings
         this.backgroundSpeed = this.baseBackgroundSpeed;
         this.obstacleSpeed = this.baseObstacleSpeed;
@@ -201,7 +211,7 @@ class Endless extends Phaser.Scene {
 
         // Start Player 2
         let nextCharacter = (this.selectedCharacter === 'shovelbro') ? 'axebro' : 'shovelbro';
-        this.startPlayer(nextCharacter)
+        this.startPlayer(nextCharacter); 
 
         
         this.difficultyEvent = this.time.addEvent({
@@ -249,6 +259,10 @@ class Endless extends Phaser.Scene {
             fontSize: '24px',
             color: '#FFFFFF'
         }).setOrigin(0.5)
+
+        this.time.delayedCall(5000, () => {
+            this.scene.start('menuScene'); 
+        });
 
     }
 }
