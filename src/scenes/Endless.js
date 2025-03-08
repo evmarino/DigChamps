@@ -36,7 +36,8 @@ class Endless extends Phaser.Scene {
         keyJUMP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
 
         // Floor
-        this.floor = this.add.rectangle(200, 600, game.config.width + 90, 20, 0x9D9C9D).setOrigin(0.13, 0).setAlpha(0)
+        this.floor = this.add.rectangle(200, 600, game.config.width + 90, 20, 0x9D9C9D).setOrigin(0.13, 0)
+        this.floor.setAlpha(0)
         this.physics.add.existing(this.floor, true)
 
         // Start Player 1
