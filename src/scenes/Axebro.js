@@ -9,6 +9,7 @@ class AxeBro extends Phaser.Physics.Arcade.Sprite {
         this.jumpCount = 0;
 
         this.scene = scene;
+        this.jumpSound = this.scene.sound.add('click')
         this.createAnimations();
     }
 
@@ -36,18 +37,19 @@ class AxeBro extends Phaser.Physics.Arcade.Sprite {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(keyJUMP) && this.jumpCount < 10) {
-            this.play('axebro_jump', true);
-            this.playerJumps();
+            this.play('axebro_jump', true)
+            this.playerJumps()
+            this.jumpSound.play()
             this.jumpCount++;
         } 
         else if (this.body.touching.down && this.anims.currentAnim?.key !== 'axebro_walk') {
-            this.play('axebro_walk', true);
-            this.jumpCount = 0;
+            this.play('axebro_walk', true)
+            this.jumpCount = 0
         }
     }
 
     playerJumps() {
-        this.setVelocityY(-650);
+        this.setVelocityY(-650)
     }
 }
 

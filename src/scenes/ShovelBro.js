@@ -9,6 +9,7 @@ class ShovelBro extends Phaser.Physics.Arcade.Sprite {
         this.jumpCount = 0;
         
         this.scene = scene;
+        this.jumpSound = this.scene.sound.add('click')
         this.createAnimations();
     }
 
@@ -38,6 +39,7 @@ class ShovelBro extends Phaser.Physics.Arcade.Sprite {
         if (Phaser.Input.Keyboard.JustDown(keyJUMP) && this.jumpCount < 10) {
             this.play('shovelbro_jump', true);
             this.playerJumps();
+            this.jumpSound.play()
             this.jumpCount++;
         } 
         else if (this.body.touching.down && this.anims.currentAnim?.key !== 'shovelbro_walk') {

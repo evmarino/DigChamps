@@ -4,6 +4,10 @@ class Picking extends Phaser.Scene {
     }
    
     create() {
+
+        this.clickSound = this.sound.add('click')
+        this.selectSound = this.sound.add('playerselectMusic')
+
         this.backgroundColor = this.add.rectangle(0, 0, 1400, 800, 0x98fffd).setOrigin(0, 0).setAlpha(1);
         this.backgroundArt = this.add.image(0, 0, 'pickPlayer').setOrigin(0, 0).setAlpha(1);
 
@@ -39,22 +43,25 @@ class Picking extends Phaser.Scene {
 
         // player selection 
         this.redbox.on('pointerdown', () => {
-            console.log("Red Box Clicked! Fading out background & fading in Player Option 2.");
-            this.fadeTransition(this.redaxe, "AXEBRO SELECTED", "#003d80", "axebro");
+            this.clickSound.play()
+            console.log("Red Box Clicked! Fading out background & fading in Player Option 2.")
+            this.fadeTransition(this.redaxe, "AXEBRO SELECTED", "#003d80", "axebro")
         });
 
         this.bluebox.on('pointerdown', () => {
-            console.log("Blue Box Clicked! Fading out background & fading in Player Option 1.");
-            this.fadeTransition(this.blueshovel, "SHOVELBRO SELECTED", "#FF0000", "shovelbro");
+            this.clickSound.play()
+            console.log("Blue Box Clicked! Fading out background & fading in Player Option 1.")
+            this.fadeTransition(this.blueshovel, "SHOVELBRO SELECTED", "#FF0000", "shovelbro")
         });
     }
 
     fadeTransition(selectedPlayer, text, color, characterName) {
         this.playerSelect.setAlpha(0);
+        this.selectSound.play()
 
         console.log("Setting selected player:", characterName);
         this.registry.set('selectedPlayer', characterName);
-        console.log("Stored selected player as:", this.registry.get('selectedPlayer'));
+        console.log("Stored selected player as:", this.registry.get('selectedPlayer'))
 
         this.tweens.add({
             targets: [this.backgroundArt],
@@ -90,7 +97,7 @@ class Picking extends Phaser.Scene {
                     }
                 }
             ]
-        });
+        })
 
         selectedPlayer.setAlpha(1);
 
@@ -101,23 +108,23 @@ class Picking extends Phaser.Scene {
                 fontFamily: 'Joystix',
                 fontSize: '32px',
                 color: color
-            }).setOrigin(0.5);
+            }).setOrigin(0.5)
 
-            selectedText.setDepth(1000);
-            selectedText.setAlpha(1);
-            selectedText.setVisible(true);
+            selectedText.setDepth(1000)
+            selectedText.setAlpha(1)
+            selectedText.setVisible(true)
 
             // Fade out 
             this.time.delayedCall(1000, () => {
-                console.log("Fading out screen before switching to PinkChamp...");
-                this.cameras.main.fadeOut(800, 0, 0, 0);
+                console.log("Fading out screen before switching to PinkChamp...")
+                this.cameras.main.fadeOut(800, 0, 0, 0)
             });
 
-            // PinkChamp Scene before Endless Runner
+            // PinkChamp Scene transish 
             this.time.delayedCall(1800, () => {
-                let storedCharacter = this.registry.get('selectedPlayer');
-                this.scene.start("pinkChamp", { character: storedCharacter });
-            });
-        });
+                let storedCharacter = this.registry.get('selectedPlayer')
+                this.scene.start("pinkChamp", { character: this.registry.get('selectedPlayer') })
+            })
+        })
     }
 }
