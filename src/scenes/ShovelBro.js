@@ -15,7 +15,6 @@ class ShovelBro extends Phaser.Physics.Arcade.Sprite {
 
     createAnimations() {
         if (!this.scene.anims.exists('shovelbro_walk')) {
-            
             this.scene.anims.create({
                 key: 'shovelbro_walk',
                 frames: this.scene.anims.generateFrameNumbers('shovelbro', { frames: [1, 2, 3, 1, 2, 3] }),
@@ -24,8 +23,7 @@ class ShovelBro extends Phaser.Physics.Arcade.Sprite {
             });
         }
 
-        if (!this.scene.anims.exists('shovelbro_jump')) {
-            
+        if (!this.scene.anims.exists('shovelbro_jump')) { 
             this.scene.anims.create({
                 key: 'shovelbro_jump',
                 frames: [{ key: 'shovelbro', frame: 0 }],

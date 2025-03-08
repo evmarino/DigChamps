@@ -15,7 +15,6 @@ class AxeBro extends Phaser.Physics.Arcade.Sprite {
 
     createAnimations() {
         if (!this.scene.anims.exists('axebro_walk')) {
-           
             this.scene.anims.create({
                 key: 'axebro_walk',
                 frames: this.scene.anims.generateFrameNumbers('axebro', { frames: [0, 1, 2, 3, 0, 1, 2, 3] }),
@@ -25,7 +24,6 @@ class AxeBro extends Phaser.Physics.Arcade.Sprite {
         }
 
         if (!this.scene.anims.exists('axebro_jump')) {
-            
             this.scene.anims.create({
                 key: 'axebro_jump',
                 frames: [{ key: 'axebro', frame: 0 }],
