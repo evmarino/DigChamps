@@ -10,7 +10,7 @@ let config = {
         default: "arcade",
         arcade: {
             gravity: { y: 1400}, 
-            debug: true
+            debug: false
         } 
     } ,
     scene:[Menu, Picking, PinkChamp, Endless]
