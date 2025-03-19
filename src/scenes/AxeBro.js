@@ -38,7 +38,7 @@ class AxeBro extends Phaser.Physics.Arcade.Sprite {
     update() {
         if (!this.body) return;
 
-        if (Phaser.Input.Keyboard.JustDown(keyJUMP) && this.jumpCount < 10) {
+        if (Phaser.Input.Keyboard.JustDown(keyJUMP) && this.jumpCount < 3) {
             this.play('axebro_jump', true);
             this.playerJumps();
             this.jumpCount++;

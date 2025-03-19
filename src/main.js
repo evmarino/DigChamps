@@ -13,7 +13,7 @@ let config = {
             debug: false
         } 
     } ,
-    scene:[Menu, Picking, PinkChamp, Endless]
+    scene:[Menu, Instructions, Credits, Picking, PinkChamp, Endless]
 };
 
 let game = new Phaser.Game(config)
