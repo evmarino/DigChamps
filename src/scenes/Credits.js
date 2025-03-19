@@ -15,7 +15,7 @@ class Credits extends Phaser.Scene {
         }).setOrigin(0.5);
 
         // Game Info
-        this.add.text(this.scale.width / 2, 120, "Inspired by Regular Show\nVisual assets hand drawn by Evelyn Marino", {
+        this.add.text(this.scale.width / 2, 120, "Inspired by Regular Show\n created with hand drawn visual assets, solo project by Evelyn Marino", {
             fontSize: "24px",
             fill: "#FF4500",
             fontFamily: "Joystix",
