@@ -56,11 +56,12 @@ class Menu extends Phaser.Scene {
         // Color title 
         this.title2 = this.add.image(0, 0, 'colortitle').setOrigin(0, 0).setScale(1)
 
-        this.add.text(500, 550, 'click anywhere to begin', { fontSize: '24px', fill: '#FFF', fontFamily: 'Joystix' })
+        this.add.text(580, 530, 'click to play', { fontSize: '24px', fill: '#FFF', fontFamily: 'Joystix' })
 
-        this.floor = this.add.rectangle(550, 600, 400, 40,0x98fffd).setOrigin(0.13, 0.3)
-        this.add.text(500, 600, 'How to play', { fontSize: '24px', fill: '#FFA500', fontFamily: 'Joystix' })
-        this.add.text(500, 620, 'Credits', { fontSize: '24px', fill: '#FFF', fontFamily: 'Joystix' })
+        this.floor = this.add.rectangle(600, 650, 320, 40,0x98fffd).setOrigin(0.13, 0.3)
+        this.floor = this.add.rectangle(600, 700, 320, 40,0xFFA500).setOrigin(0.13, 0.3)
+        this.add.text(600, 650, 'How to play', { fontSize: '24px', fill: '#FFA500', fontFamily: 'Joystix' })
+        this.add.text(600, 700, 'Credits', { fontSize: '24px', fill: '#98fffd', fontFamily: 'Joystix' })
 
         // overlapping titles
         this.title.setDepth(1);
