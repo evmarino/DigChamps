@@ -30,6 +30,7 @@ class Menu extends Phaser.Scene {
         this.load.audio('gameoverMusic', './Assets/gameover.mp3');
         this.load.audio('maintheme', './Assets/maintheme.mp3');
         this.load.audio('playerselectMusic', './Assets/playerselect.mp3');
+        this.load.audio('dcjingle', './Assets/dcjingle.mp3');
 
     }
 
@@ -37,6 +38,8 @@ class Menu extends Phaser.Scene {
 
         this.clickSound = this.sound.add('click')
         this.mainSound = this.sound.add("maintheme")
+        this.dcjingle = this.sound.add('dcjingle')
+        this.dcjingle.play()
 
         //main title
         this.Mtitle = this.add.image(0, 0, 'maintitle')
@@ -53,8 +56,15 @@ class Menu extends Phaser.Scene {
         // Color title 
         this.title2 = this.add.image(0, 0, 'colortitle').setOrigin(0, 0).setScale(1)
 
+        this.add.text(500, 550, 'click anywhere to begin', { fontSize: '24px', fill: '#FFF', fontFamily: 'Joystix' })
+
+        this.floor = this.add.rectangle(550, 600, 400, 40,0x98fffd).setOrigin(0.13, 0.3)
+        this.add.text(500, 600, 'How to play', { fontSize: '24px', fill: '#FFA500', fontFamily: 'Joystix' })
+        this.add.text(500, 620, 'Credits', { fontSize: '24px', fill: '#FFF', fontFamily: 'Joystix' })
+
         // overlapping titles
         this.title.setDepth(1);
+
 
         // flickering effect for the block letter title
         this.tweens.add({
@@ -82,6 +92,7 @@ class Menu extends Phaser.Scene {
                         //click to start 
                         this.input.once('pointerdown', () => {
                             this.clickSound.play()
+                            this.dcjingle.stop()
                             this.scene.start("pickingScene")
                         });
 
